@@ -7,12 +7,12 @@ void myScan(int arr[], int n){
 
 int main(){
     unsigned int numberOfNumbers;
-    scanf("%d", &numberOfNumbers);
+    scanf("%d", &numberOfNumbers);  // 0 <= N <= 100000
     int numbers[numberOfNumbers];
     myScan(numbers, numberOfNumbers);
 
     unsigned int numberOfIndex;
-    scanf("%d", &numberOfIndex);
+    scanf("%d", &numberOfIndex);    // 0 <= N <= 100000
     int index[numberOfIndex];
     myScan(index, numberOfIndex);
 
