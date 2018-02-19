@@ -1,22 +1,20 @@
 #include <stdio.h>
 
-int main(){
+void myScan(int arr[], int n){
+    for(int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+}
 
+int main(){
     unsigned int numberOfNumbers;
     scanf("%d", &numberOfNumbers);
     int numbers[numberOfNumbers];
-    for(int i = 0; i < numberOfNumbers; i++){
-        scanf("%d", &numbers[i]);
-    }
-
+    myScan(numbers, numberOfNumbers);
 
     unsigned int numberOfIndex;
     scanf("%d", &numberOfIndex);
     int index[numberOfIndex];
-    for(int c = 0; c < numberOfIndex; c++){
-        scanf("%d", &index[c]);
-    }
-
+    myScan(index, numberOfIndex);
 
     for(int c = 0; c < numberOfIndex; c++){
         if(index[c] > numberOfNumbers || index[c] == 0)
