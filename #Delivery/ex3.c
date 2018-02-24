@@ -2,6 +2,7 @@
 #include "stdbool.h"
 #include "stdlib.h"
 #include "string.h"
+#include "limits.h"
 
 long int myScan(long int arr[], int n){
     long int sumAll = 0;
@@ -34,29 +35,21 @@ long int getMaxOrMin(long int numbers[], int size, int subSize, bool isMax){
     long int maxSum = 0;
     long int minSum = 0;
     for (int i = 0; i < size; i += subSize) {
-        if(i + subSize <= size){
-            if(isMax){
-                maxSum += findMax(&numbers[i], subSize);
-            }
-            else{
-                minSum += findMin(&numbers[i], subSize);
-            }
-        }else{
-            if(isMax){
-                maxSum += findMax(&numbers[i], size - i);
-            } else {
-                minSum += findMin(&numbers[i], size - i);
-            }
+        if(isMax){
+            maxSum += (i + subSize <= size) ? findMax(&numbers[i], subSize) : findMax(&numbers[i], size - i);
+        } else {
+            minSum += (i + subSize <= size) ? findMin(&numbers[i], subSize) : findMin(&numbers[i], size - i);
         }
     }
     return (isMax) ? maxSum : minSum;
 }
 
 int main(){
-    unsigned int nElements;
+    int nElements;
     scanf("%d", &nElements);  // 1 <= N <= 100000
     long int numbers[nElements];
-    long int sumAll = myScan(numbers, nElements);
+    long int sumAll = myScan(numbers, nElements); // ERROR WHEN −2147483648 IS TYPED
+    printf("INSERTED = %ld\n", numbers[0]);
     int scanvalue;
 
     int size = 15;
@@ -93,7 +86,7 @@ int main(){
         } else {
             numToPrint = getMaxOrMin(numbers, nElements, subSize, isMax);
         }
-        printf(" + %s %ld\n", (strcmp(&maxMin, "M") == 0) ? "max" : "min", numToPrint);
+        printf("+ %s %ld\n", (strcmp(&maxMin, "M") == 0) ? "max" : "min", numToPrint);
     }
 
     return 0;
