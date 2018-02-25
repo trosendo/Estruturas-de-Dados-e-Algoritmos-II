@@ -4,17 +4,17 @@
 #include "string.h"
 #include "limits.h"
 
-long int myScan(long int arr[], int n){
-    long int sumAll = 0;
+long long int myScan(long long int arr[], int n){
+    long long int sumAll = 0;
     for(int i = 0; i < n; i++){
-        scanf("%ld", &arr[i]);
+        scanf("%lld", &arr[i]);
         sumAll += arr[i];
     }
     return sumAll;
 }
 
-int findMin(long int *arr, int size){
-    int min = arr[0];
+long long int findMin(long long int *arr, int size){
+    long long int min = arr[0];
     for (int i = 1; i < size; i++) {
         if(arr[i] < min)
             min = arr[i];
@@ -22,8 +22,8 @@ int findMin(long int *arr, int size){
     return min;
 }
 
-int findMax(long int *arr, int size){
-    int max = arr[0];
+long long int findMax(long long int *arr, int size){
+    long long int max = arr[0];
     for (int i = 1; i < size; i++) {
         if(arr[i] > max)
             max = arr[i];
@@ -31,9 +31,9 @@ int findMax(long int *arr, int size){
     return max;
 }
 
-long int getMaxOrMin(long int numbers[], int size, int subSize, bool isMax){
-    long int maxSum = 0;
-    long int minSum = 0;
+long long int getMaxOrMin(long long int numbers[], int size, int subSize, bool isMax){
+    long long int maxSum = 0;
+    long long int minSum = 0;
     for (int i = 0; i < size; i += subSize) {
         if(isMax){
             maxSum += (i + subSize <= size) ? findMax(&numbers[i], subSize) : findMax(&numbers[i], size - i);
@@ -47,9 +47,8 @@ long int getMaxOrMin(long int numbers[], int size, int subSize, bool isMax){
 int main(){
     int nElements;
     scanf("%d", &nElements);  // 1 <= N <= 100000
-    long int numbers[nElements];
-    long int sumAll = myScan(numbers, nElements); // ERROR WHEN −2147483648 IS TYPED
-    printf("INSERTED = %ld\n", numbers[0]);
+    long long int numbers[nElements];
+    long long int sumAll = myScan(numbers, nElements);
     int scanvalue;
 
     int size = 15;
@@ -73,9 +72,10 @@ int main(){
         used++;
     }while (scanvalue != EOF);
 
+
     int subSize;
     char maxMin;
-    long int numToPrint;
+    long long int numToPrint;
     bool isMax;
     for(int i = 0; i < used; i++){
         subSize = n[i]; // size of subsequences
@@ -86,8 +86,13 @@ int main(){
         } else {
             numToPrint = getMaxOrMin(numbers, nElements, subSize, isMax);
         }
-        printf("+ %s %ld\n", (strcmp(&maxMin, "M") == 0) ? "max" : "min", numToPrint);
+        printf("+ %s %lld\n", (strcmp(&maxMin, "M") == 0) ? "max" : "min", numToPrint);
     }
+
+    free(c);
+    c = NULL;
+    free(n);
+    n = NULL;
 
     return 0;
 }
