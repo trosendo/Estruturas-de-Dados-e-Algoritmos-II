@@ -104,7 +104,7 @@ int main(void)
   // testa list_remove()
   printf("+ remove %d\n", UM_VALOR);
 
-  if (!list_remove(l, UM_VALOR))
+  if (!list_remove(l, UM_VALOR))  
     {
       printf("ERRO: problema ao remover o %d\n", UM_VALOR);
 
